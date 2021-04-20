@@ -2,10 +2,7 @@ const createError = require('http-errors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const knex = require('knex');
-const knexfile = require('./knexfile');
-
-const db = knex(knexfile[process.env.NODE_ENV || 'development']);
+const db = require('./db/db')
 
 const IndexController = require('./routes/indexController');
 const UtcController = require('./routes/utcController');
