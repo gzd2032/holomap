@@ -4,9 +4,9 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const db = require('./db/db')
 
-const IndexController = require('./routes/indexController');
-const UtcController = require('./routes/utcController');
-const LocationsController = require('./routes/locationsController');
+const IndexController = require('./controllers/indexController');
+const UtcController = require('./controllers/utcController');
+const LocationsController = require('./controllers/locationsController');
 
 const app = express();
 

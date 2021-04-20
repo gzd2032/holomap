@@ -1,33 +1,34 @@
+/* global jest */
 const _ = require('lodash');
 
-const CreateKnexMock = () => {
+const CreateDBMock = jest.fn(() => {
   const tables = {
     locations: [],
     utcs: [],
     locations_utcs: [],
   };
 
-  const knex = {
-    select: () => knex,
+  const db = {
+    select: () => db,
     insert: (data) => {
-      knex.currentInsertion = _.isArray(data) ? data : [data];
-      return knex;
+      db.currentInsertion = _.isArray(data) ? data : [data];
+      return db;
     },
     into: async (table) => {
-      tables[table] = tables[table].concat(knex.currentInsertion);
-      knex.currentInsertion = null;
+      tables[table] = tables[table].concat(db.currentInsertion);
+      db.currentInsertion = null;
     },
     from: async (table) => tables[table],
     del: () => {
       tables.locations = [];
       tables.utcs = [];
       tables.locations_utcs = [];
-      return knex;
+      return db;
     },
     currentInsertion: null,
   };
 
-  return knex;
-};
+  return db;
+});
 
-module.exports = CreateKnexMock;
+module.exports = CreateDBMock();

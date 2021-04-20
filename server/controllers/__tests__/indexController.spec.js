@@ -1,10 +1,9 @@
 /* global describe, beforeEach, afterEach, it, expect */
+jest.mock('../../db/db');
 const IndexController = require('../indexController');
-const mockKnex = require('../../db');
-jest.mock('../../db');
+const knex = require('../../db/db');
 
 describe('The index controller', () => {
-  const knex = mockKnex();
   let indexController = null;
   const mockLocation = {
     id: 1,
@@ -29,7 +28,7 @@ describe('The index controller', () => {
     knex.del();
   });
 
-  it('should pass because this is a fake test', () => {
-    expect(typeof indexController.index).toBe('function');
+  test('knex.select should be a mock function', () => {
+    expect(typeof knex.select).toBe('function');
   });
 });

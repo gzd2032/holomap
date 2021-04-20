@@ -4,7 +4,7 @@ module.exports = {
   development: {
     client: 'sqlite3',
     connection: {
-      filename: './db/holomap.db',
+      filename: './db/database/holomap.db',
     },
     migrations: {
       tableName: 'knex_migrations',
@@ -13,11 +13,12 @@ module.exports = {
     seeds: {
       directory: './db/seeds',
     },
+    useNullAsDefault: true,
   },
   testing: {
     client: 'sqlite3',
     connection: {
-      filename: './db/holomap.test.db',
+      filename: './db/database/holomap.test.db',
     },
     migrations: {
       tableName: 'knex_migrations',
@@ -26,5 +27,6 @@ module.exports = {
     seeds: {
       directory: './db/seeds',
     },
+    useNullAsDefault: true,
   },
 };
