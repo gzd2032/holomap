@@ -1,0 +1,8 @@
+{
+  "verbose": true,
+  "watch": ["bin/www", "*/**/*.js"],
+  "env": {
+    "NODE_ENV": "development",
+    "DEBUG": "server:server"
+  }
+}
