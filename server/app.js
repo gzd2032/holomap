@@ -2,6 +2,10 @@ const createError = require('http-errors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const knex = require('knex');
+const knexfile = require('./knexfile');
+
+const db = knex(knexfile[process.env.NODE_ENV || 'development']);
 
 const IndexController = require('./routes/indexController');
 const UtcController = require('./routes/utcController');
@@ -9,9 +13,9 @@ const LocationsController = require('./routes/locationsController');
 
 const app = express();
 
-const indexController = IndexController();
-const utcController = UtcController();
-const locationsController = LocationsController();
+const indexController = IndexController(db);
+const utcController = UtcController(db);
+const locationsController = LocationsController(db);
 
 // all middleware
 app.use(logger('dev'));

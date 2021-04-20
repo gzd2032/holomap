@@ -1,4 +1,4 @@
-function indexController() {
+function indexController(db) {
   function index(req, res) {
     res.send('This is the index Controller');
   }
