@@ -12,7 +12,7 @@ async function seedLocations(knex) {
   while (LOCATION_SEED_COUNT-- > 0) {
     // eslint-disable-next-line no-await-in-loop
     await knex('locations').insert({
-      name: `Fort ${faker.name.lastName()}`,
+      name: `Fort ${faker.unique(faker.name.lastName)}`,
       country: faker.address.countryCode(),
       coordinates: JSON.stringify([
         faker.address.latitude(),
