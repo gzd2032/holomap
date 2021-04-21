@@ -1,7 +1,7 @@
 /* global describe, beforeEach, afterEach, it, expect */
-jest.mock('../../db/db');
+jest.mock('../../../db/db');
 const IndexController = require('../indexController');
-const db = require('../../db/db');
+const db = require('../../../db/db');
 
 describe('The index controller', () => {
   let indexController = null;

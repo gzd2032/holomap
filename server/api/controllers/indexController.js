@@ -1,4 +1,4 @@
-const { transformLocation } = require('../utils/locations');
+const { transformLocation } = require('../../utils/locations');
 
 function IndexController(db) {
   async function index(req, res) {
