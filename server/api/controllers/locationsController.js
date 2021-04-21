@@ -1,13 +1,46 @@
-function locationsController(db) {
-  function index(req, res) {
-    db
-      .get('*')
-      .from('locations')
-      .then(data => console.log(data));
+module.exports = (locationService) => ({
+  /**
+   * GET /locations
+   */
+  async index(request, response) {
+    response.send(await locationService.getAllLocations());
+  },
 
-    res.send('This is the locations Controller');
-  }
-  return { index };
-}
+  /**
+   * GET /location/:locationId
+   */
+  async findOne(request, response) {
+    const location = await locationService.getLocationById(request.params.locationId);
 
-module.exports = locationsController;
+    response.send(location);
+  },
+
+  /**
+   * POST /locations
+   */
+  async save(request, response) {
+    const savedLocation = await locationService.createLocation(request.body);
+
+    response.send(savedLocation);
+  },
+
+  /**
+   * PATCH /location/:locationId
+   */
+  async update(request, response) {
+    const { params, body } = request;
+
+    const updatedLocation = await locationService.updateById(params.locationId, body);
+
+    response.send(updatedLocation);
+  },
+
+  /**
+   * DELETE /location/:locationId
+   */
+  async destroy(request, response) {
+    const wasDeleted = await locationService.deleteById(request.params.locationId);
+
+    response.send({ wasDeleted });
+  },
+});

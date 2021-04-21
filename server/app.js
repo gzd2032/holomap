@@ -9,14 +9,16 @@ const UtcController = require('./api/controllers/utcController');
 const LocationsController = require('./api/controllers/locationsController');
 
 const UTCService = require('./api/services/UTCService');
+const LocationService = require('./api/services/LocationService');
 
 const app = express();
 
 const utcService = UTCService(db);
+const locationService = LocationService(db);
 
 const indexController = IndexController(db);
 const utcController = UtcController(utcService);
-const locationsController = LocationsController(db);
+const locationsController = LocationsController(locationService);
 
 // all middleware
 app.use(logger('dev'));
@@ -33,6 +35,10 @@ app.patch('/utcs/:utcId', utcController.update);
 app.delete('/utcs/:utcId', utcController.destroy);
 
 app.get('/locations', locationsController.index);
+app.post('/locations', locationsController.save);
+app.get('/locations/:locationId', locationsController.findOne);
+app.patch('/locations/:locationId', locationsController.update);
+app.delete('/locations/:locationId', locationsController.destroy);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

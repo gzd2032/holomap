@@ -24,8 +24,8 @@ describe('The index controller', () => {
     indexController = IndexController(db);
   });
 
-  afterEach(() => {
-    db.del();
+  afterEach( async () => {
+    await db.del();
   });
 
   test('knex.select should be a mock function', () => {
