@@ -29,8 +29,8 @@ const CreateDBMock = jest.fn(() => {
   ];
 
   const db = {
-    select: () => db,
-    insert: (data) => {
+    select: async () => db,
+    insert: async (data) => {
       db.currentInsertion = _.isArray(data) ? data : [data];
       return db;
     },
@@ -47,7 +47,7 @@ const CreateDBMock = jest.fn(() => {
       db.currentResult = db.mockLocations.find((location) => location[column] === id);
       return db;
     },
-    del: () => {
+    del: async () => {
       tables.locations = [];
       tables.utcs = [];
       tables.locations_utcs = [];

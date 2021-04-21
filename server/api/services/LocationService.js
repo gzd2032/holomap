@@ -6,23 +6,29 @@ function LocationService(db) {
   }
 
   async function getLocationsById(id) {
-    const data = await db.select('*').from('locations').where('id', 2);
+    const data = await db.first('*').from('locations').where('id', id);
     return data;
   }
 
-  async function createLocation() {
-
+  async function createLocation(location) {
+    const idArray = await db.insert(location).into('locations');
+    const newId = idArray[0];
+    const data = await db.first('*').from('locations').where('id', newId);
+    return data;
   }
 
-  async function updateById() {
-
+  async function updateById(id, newItem) {
+    await db.from('locations').where('id', id).update(newItem);
+    const data = await db.first('*').from('locations').where('id', id);
+    return data;
   }
 
-  async function deletebyId() {
-
+  async function deleteById(id) {
+    const affectedRows = await db.from('locations').where('id', id).del();
+    return affectedRows > 0;
   }
 
-  return {getAllLocations, getLocationsById, createLocation, updateById, deletebyId}
+  return {getAllLocations, getLocationsById, createLocation, updateById, deleteById}
 };
 
 module.exports = LocationService;
