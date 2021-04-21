@@ -19,6 +19,12 @@ const CreateDBMock = jest.fn(() => {
       db.currentInsertion = null;
     },
     from: async (table) => tables[table],
+    where: jest.fn().mockResolvedValueOnce({
+      id: 2,
+      name: 'Fort Wayne',
+      country: 'EE',
+      coordinates: '["-10.1234","-49.536"]',
+    }),
     del: () => {
       tables.locations = [];
       tables.utcs = [];
