@@ -5,7 +5,7 @@ function LocationService(db) {
     return data;
   }
 
-  async function getLocationsById(id) {
+  async function getLocationById(id) {
     const data = await db.first('*').from('locations').where('id', id);
     return data;
   }
@@ -28,7 +28,7 @@ function LocationService(db) {
     return affectedRows > 0;
   }
 
-  return {getAllLocations, getLocationsById, createLocation, updateById, deleteById}
+  return {getAllLocations, getLocationById, createLocation, updateById, deleteById}
 };
 
 module.exports = LocationService;

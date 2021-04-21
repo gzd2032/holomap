@@ -44,8 +44,8 @@ describe('This is the intial test', () => {
     expect(results.length).toBe(3);
   });
 
-  it('getLocationsById function should return a location by ID', async () => {
-    const location = await locationService.getLocationsById(2);
+  it('getLocationById function should return a location by ID', async () => {
+    const location = await locationService.getLocationById(2);
     expect(location.id).toBe(2);
   });
 
