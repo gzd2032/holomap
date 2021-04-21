@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
-    "test": "NODE_ENV=testing jest --watchAll"
+    "test": "NODE_ENV=testing jest"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
