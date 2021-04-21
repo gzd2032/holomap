@@ -1,6 +1,6 @@
 /* global jest, describe, it, expect, beforeEach */
 
-jest.mock('../../../db/db');
+// jest.mock('../../../db/db');
 const LocationService = require('../LocationService');
 const db = require('../../../db/db');
 
@@ -27,7 +27,7 @@ describe('This is the intial test', () => {
   ];
   beforeEach( async () => {
     await db.insert(mockLocation).into('locations');
-    locationService = LocationService();
+    locationService = LocationService(db);
   });
 
   afterEach( async () => {
@@ -39,7 +39,7 @@ describe('This is the intial test', () => {
   });
 
   it('getAllLocations function should return a list of locations', async () => {
-    const results = await locationService.getAllLocations(db);
+    const results = await locationService.getAllLocations();
     expect(results.length).toBe(3);
   });
   it('getLocationsById function should return a location by ID', async () => {
