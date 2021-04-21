@@ -2,16 +2,20 @@ const createError = require('http-errors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const db = require('./db/db')
+const db = require('./db/db');
 
 const IndexController = require('./api/controllers/indexController');
 const UtcController = require('./api/controllers/utcController');
 const LocationsController = require('./api/controllers/locationsController');
 
+const UTCService = require('./api/services/UTCService');
+
 const app = express();
 
+const utcService = UTCService(db);
+
 const indexController = IndexController(db);
-const utcController = UtcController(db);
+const utcController = UtcController(utcService);
 const locationsController = LocationsController(db);
 
 // all middleware
@@ -21,7 +25,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.get('/', indexController.index);
+
 app.get('/utcs', utcController.index);
+app.post('/utcs', utcController.save);
+app.get('/utcs/:utcId', utcController.findOne);
+app.patch('/utcs/:utcId', utcController.update);
+app.delete('/utcs/:utcId', utcController.destroy);
+
 app.get('/locations', locationsController.index);
 
 // catch 404 and forward to error handler
