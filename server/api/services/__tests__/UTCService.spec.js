@@ -1,4 +1,4 @@
-/* global describe, beforeEach, it, expect */
+/* global describe, afterEach, beforeEach, it, expect */
 
 const UTCService = require('../UTCService');
 const db = require('../../../db/db');
@@ -28,6 +28,10 @@ describe('UTC Service', () => {
     await db('utcs').insert(dummyUTCs);
   });
 
+  afterEach(async () => {
+    await db('utcs').truncate();
+  });
+
   describe('#getAllUTCs method', () => {
     it('should return all of the utcs', async () => {
       // When
@@ -42,12 +46,16 @@ describe('UTC Service', () => {
     it('should return the utc that has the provided id', async () => {
       // Given
       const { id } = dummyUTCs[0];
-
+      const expectedResult = {
+        ...dummyUTCs[0],
+        locations: [],
+        // The locations relationship is returned when the utc is fetched
+      };
       // When
       const result = await utcService.getUTCById(id);
 
       // Then
-      expect(result).toEqual(dummyUTCs[0]);
+      expect(result).toEqual(expectedResult);
     });
 
     it('should return nothing if no utc was found', async () => {

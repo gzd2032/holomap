@@ -5,11 +5,17 @@ module.exports = (db) => ({
       .from('utcs');
   },
 
-  getUTCById(id) {
-    return db
+  async getUTCById(id) {
+    const utc = await db
       .first('*')
       .from('utcs')
       .where('id', id);
+    const locations = await db.select().from('locations').join('locations_utcs', 'locations_utcs.location_id', 'locations.id').where('locations_utcs.utc_id', id);
+    if (utc) {
+      utc['locations'] = locations;
+      return utc;
+    }
+    return utc;
   },
 
   async createUTC(newUTC) {

@@ -5,8 +5,13 @@ function LocationService(db) {
   }
 
   async function getLocationById(id) {
-    const data = await db.first('*').from('locations').where('id', id);
-    return data;
+    const locationData = await db.first('*').from('locations').where('id', id);
+    if (!locationData) return undefined;
+    const utcs = await db.select()
+      .from('utcs')
+      .join('locations_utcs', 'locations_utcs.utc_id', 'utcs.id')
+      .where('locations_utcs.location_id', id);
+    return Object.assign(locationData, { utcs });
   }
 
   async function createLocation(location) {
@@ -27,7 +32,6 @@ function LocationService(db) {
     return affectedRows > 0;
   }
 
-<<<<<<< HEAD
   return {
     getAllLocations,
     getLocationById,
@@ -36,9 +40,5 @@ function LocationService(db) {
     deleteById,
   };
 }
-=======
-  return {getAllLocations, getLocationById, createLocation, updateById, deleteById}
-};
->>>>>>> fixed mock db and updated indexController to use services instead of db
 
 module.exports = LocationService;
