@@ -3,6 +3,8 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const compression = require('compression');
+const cors = require('cors');
+
 const db = require('./db/db');
 
 const IndexController = require('./api/controllers/indexController');
@@ -30,6 +32,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(compression());
+app.use(cors({ origin: 'http://localhost:3000' }));
 
 app.get('/', indexController.index);
 
