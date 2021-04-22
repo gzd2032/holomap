@@ -2,6 +2,7 @@ const createError = require('http-errors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const compression = require('compression');
 const db = require('./db/db');
 
 const IndexController = require('./api/controllers/indexController');
@@ -16,15 +17,19 @@ const app = express();
 const utcService = UTCService(db);
 const locationService = LocationService(db);
 
-const indexController = IndexController(locationService, utcService);
+const indexController = IndexController(locationService, utcService, db);
 const utcController = UtcController(utcService);
 const locationsController = LocationsController(locationService);
+
+app.disable('x-powered-by');
+app.disable('etag');
 
 // all middleware
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(compression());
 
 app.get('/', indexController.index);
 
