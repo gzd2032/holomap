@@ -1,5 +1,5 @@
 function transformCoordinates(coordinates) {
-  return coordinates.map(point => parseFloat(point));
+  return coordinates.map((point) => parseFloat(point));
 }
 
 function transformLocation(location) {
