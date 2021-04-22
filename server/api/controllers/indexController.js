@@ -5,7 +5,6 @@ function IndexController(locationService, utcService) {
     const locations = await locationService.getAllLocations();
     const utcs = await utcService.getAllUTCs();
     const transformedLocations = locations.map(transformLocation);
-
     return res.json({
       locations: transformedLocations,
       utcs,

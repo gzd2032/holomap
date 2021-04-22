@@ -27,6 +27,7 @@ function LocationService(db) {
     return affectedRows > 0;
   }
 
+<<<<<<< HEAD
   return {
     getAllLocations,
     getLocationById,
@@ -35,5 +36,9 @@ function LocationService(db) {
     deleteById,
   };
 }
+=======
+  return {getAllLocations, getLocationById, createLocation, updateById, deleteById}
+};
+>>>>>>> fixed mock db and updated indexController to use services instead of db
 
 module.exports = LocationService;
