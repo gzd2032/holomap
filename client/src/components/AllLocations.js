@@ -34,7 +34,7 @@ export default function AllLocations({locations}) {
   return (
     <Card className={classes.root}>
        <CardHeader style={{color: 'white'}}
-        title={`Locations:  ${locations.length}`}
+        title={`Location(s):  ${locations.length}`}
       />
       <CardContent style={{maxHeight: '60vh', overflow: 'auto'}} >
         {
