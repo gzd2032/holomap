@@ -1,0 +1,24 @@
+.utc-entry {
+ margin-top: 1em;
+}
+
+.utc-entry * {
+ text-decoration: none;
+}
+
+.utc-link {
+ text-decoration: none;
+ margin: 0 1em;
+ color: white;
+ font-size: 1.5em;
+}
+
+.utc-link:hover,
+.utc-link:focus {
+ color: rgb(128, 128, 248);
+}
+
+.MuiCardHeader-subheader {
+  color: white;
+  font-size: 1.5em;
+}

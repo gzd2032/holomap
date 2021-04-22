@@ -1,0 +1,19 @@
+.Bar{
+    background-color: white;
+    margin: 30px;
+}
+
+.Placement {
+    min-width: 250px;
+    min-height: 30px;
+    font-size: 20px;
+    margin: 85px 5px 30px;
+    }
+
+.tapMe {
+    background-color: grey;
+    min-width: 50px;
+    min-height: 36px;
+    font-size: 20px;
+    margin: 85px 5px 30px;
+}
