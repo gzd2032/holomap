@@ -16,7 +16,7 @@ const app = express();
 const utcService = UTCService(db);
 const locationService = LocationService(db);
 
-const indexController = IndexController(db);
+const indexController = IndexController(locationService, utcService);
 const utcController = UtcController(utcService);
 const locationsController = LocationsController(locationService);
 

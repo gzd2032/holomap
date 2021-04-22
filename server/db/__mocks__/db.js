@@ -8,59 +8,58 @@ const CreateDBMock = jest.fn(() => {
     locations_utcs: [],
   };
 
-  const mockLocations = [{
-      id: 1,
-      name: 'Fort Littel',
-      country: 'AM',
-      coordinates: '["-10.4356","-49.5316"]',
-    },
-    {
-      id: 2,
-      name: 'Fort Wayne',
-      country: 'EE',
-      coordinates: '["-10.1234","-49.536"]',
-    },
-    {
-      id: 3,
-      name: 'Fort Campbell',
-      country: 'AJ',
-      coordinates: '["-10.6789","-49.516"]',
-    },
-  ];
+  let selectedTable = null;
+  let currentInsertion = null;
+  let currentResult = null;
+
+  const mockSelect = jest.fn();
+  const mockInsert = jest.fn();
+  const mockInto = jest.fn();
+  const mockFrom = jest.fn();
+  const mockWhere = jest.fn();
+  const mockDel = jest.fn();
 
   const db = {
-    select: async () => db,
-    insert: async (data) => {
-      db.currentInsertion = _.isArray(data) ? data : [data];
-      return db;
-    },
-    into: async (table) => {
-      tables[table] = tables[table].concat(db.currentInsertion);
-      db.currentInsertion = null;
-      return db;
-    },
-    from: async (table) => {
-      db.currentTable = tables[table];
-      return db;
-    },
-    where: async (column, id) => {
-      db.currentResult = db.mockLocations.find((location) => location[column] === id);
-      return db;
-    },
-    del: async () => {
-      tables.locations = [];
-      tables.utcs = [];
-      tables.locations_utcs = [];
-      return db;
-    },
-    then: async () => {
-      const sendResult = db.currentResult;
-      db.currentResult = null;
-      return sendResult;
-    },
+    select: mockSelect,
+    insert: mockInsert,
+    into: mockInto,
+    from: mockFrom,
+    where: mockWhere,
+    del: mockDel,
     currentInsertion: null,
     currentResult: null,
+    currentTable: null,
+    raw: jest.fn().mockReturnThis(),
+    then: jest.fn((done) => {
+      done(selectedTable);
+    }),
   };
+
+  mockSelect.mockImplementation(() => db);
+  mockInsert.mockImplementation((data) => {
+    currentInsertion = _.isArray(data) ? data : [data];
+    return db;
+  });
+  mockInto.mockImplementation((table) => {
+    tables[table] = tables[table].concat(currentInsertion);
+    currentInsertion = null;
+    return db;
+  });
+  mockFrom.mockImplementation((table) => {
+    selectedTable = tables[table];
+    return db;
+  });
+  mockWhere.mockImplementation((column, id) => {
+    currentResult = selectedTable.find((location) => location[column] === id);
+    console.log(currentResult);
+    return db;
+  });
+  mockDel.mockImplementation(() => {
+    tables.locations = [];
+    tables.utcs = [];
+    tables.locations_utcs = [];
+    return db;
+  });
 
   return db;
 });

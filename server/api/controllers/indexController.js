@@ -1,11 +1,10 @@
 const { transformLocation } = require('../../utils/locations');
 
-function IndexController(db) {
+function IndexController(locationService, utcService) {
   async function index(req, res) {
-    const locations = await db.select().from('locations');
-    const utcs = await db.select().from('utcs');
+    const locations = await locationService.getAllLocations();
+    const utcs = await utcService.getAllUTCs();
     const transformedLocations = locations.map(transformLocation);
-
     return res.json({
       locations: transformedLocations,
       utcs,
