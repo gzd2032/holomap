@@ -14,6 +14,7 @@
   </a>
 
   <h3 align="center">HoloMap</h3>
+  <p> Headquarters Overview Layout of Operational Mission Assets Project (HOLOMAP) </p>
 
   <p align="center">
     project_description
