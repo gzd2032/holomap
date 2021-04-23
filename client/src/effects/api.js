@@ -21,7 +21,7 @@ export function getLocationById(id) {
 //  createLocation fetch
 export function createLocation(newLocation) {
     const [lat, long] = newLocation.coordinates.split(',');
-
+    
     return fetch('http://localhost:8080/locations', {
       method: 'POST',
       body: JSON.stringify({
@@ -30,14 +30,19 @@ export function createLocation(newLocation) {
       }),
       headers: { 'Content-Type': 'application/json' },
     })
-      .then(response => response.json());
+    .then(response => response.json());
   }
-
-//  updateLocationbyID fetch
-export function updateLocationById(id, updates) {
+  
+  //  updateLocationbyID fetch
+export function updateLocationById(id, updatedLocation) {
+  console.log('UPDATED', updatedLocation)
+  const [lat, long] = updatedLocation.coordinates.split(',');
   return fetch(`http://localhost:8080/locations/${id}`, {
     method: 'PATCH',
-    body: JSON.stringify(updates),
+    body: JSON.stringify({
+      ...updatedLocation,
+      coordinates: `["${lat}", "${long}"]`
+    }),
     headers: { 'Content-Type': 'application/json' },
   })
     .then(response => response.json());

@@ -8,9 +8,9 @@ export function selectLocationById(id, state) {
 }
 
 export function selectUTCSForLocation(locationId, state) {
-    const utcIds = state.relationships[locationId];
+  const utcIds = state.relationships[locationId] || [];
 
-    return utcIds.map(utcId => state.utcs[utcId]);
+  return utcIds.map(utcId => state.utcs[utcId]);
 }
 
 export function selectAllUTCS(state) {

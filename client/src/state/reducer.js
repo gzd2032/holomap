@@ -59,6 +59,32 @@ export function reducer(state, action) {
         },
       };
 
+    case types.DELETE_UTC:
+      const deletedUTCId = action.payload.value;
+      const newUTCs = {
+        ...state.utcs,
+      }
+      delete newUTCs[deletedUTCId]
+      return {
+        ...state,
+        utcs: {
+         ...newUTCs,
+        },
+      }; 
+
+    case types.DELETE_LOCATION:
+      const deletedLocationId = action.payload.value;
+      const newLocations = {
+        ...state.locations,
+      }
+      delete newLocations[deletedLocationId]
+      return {
+        ...state,
+        locations: {
+          ...newLocations,
+        },
+      };   
+
     default:
       return state;
   }

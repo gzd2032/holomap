@@ -22,6 +22,8 @@ const useStyles = makeStyles({
       textDecoration: 'none',
       width: '100%',
       height: '100%',
+      margin: 0,
+      padding: 0,
     },
     "& a:hover": {
       color: 'orange'

@@ -51,3 +51,21 @@ export function newLocationSaved(newLocation) {
     },
   };
 }
+
+export function deleteUTC(utcId) {
+  return {
+    type: types.DELETE_UTC,
+    payload: {
+      value: utcId,
+    },
+  };
+}
+
+export function deleteLocation(locationId) {
+  return {
+    type: types.DELETE_LOCATION,
+    payload: {
+      value: locationId,
+    },
+  };
+}

@@ -29,15 +29,14 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-export default function Location({
-    onSubmit,
-    initialValues,
-    title = 'Create New Location',
-}) {
+export default function NewLocationForm({ onSubmit }) {
   const formRef = useRef();
+  
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    
     const { current } = formRef;
+    
     onSubmit({
       name:  current["name"].value,
       country: current["Country"].value,
@@ -49,7 +48,7 @@ export default function Location({
   return (
     <Card className={classes.root}>
       <CardContent className={classes.content} >
-        <h1>{title}</h1>
+        <h1>Create New Location</h1>
         <form ref={formRef} className={classes.form} noValidate autoComplete="off">
           <TextField
             id="name"

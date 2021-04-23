@@ -17,8 +17,8 @@ export default function HomeContainerList({list, type}) {
   return (
     <List className={classes.root}  style={{maxHeight: '65vh', overflow: 'auto'}} >
      {list.map(item => (
-      <ListItem>
-        <ItemWithModal key={item.id} item={item} type={type}/>
+      <ListItem key={item.id}>
+        <ItemWithModal item={item} type={type}/>
       </ListItem>
       ))}      
     </List>

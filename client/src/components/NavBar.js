@@ -20,9 +20,6 @@ const useStyles = makeStyles({
     justifyContent: 'space-around',
     marginLeft: '.5em',
   },
-  logoHeader: {
-      textShadow: '0 1 10px orange',
-  },
   icon: {
     height: 45,
     width: 45,

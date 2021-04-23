@@ -5,8 +5,10 @@ import * as actions from './state/actions';
 import * as api from './effects/api';
 
 import Home from './pages/Home';
-import UTC from './pages/UTC';
-import Location from './pages/Location';
+import NewUTCForm from './pages/NewUTCForm';
+import EditUTCForm from './pages/EditUTCForm';
+import NewLocationForm from './pages/NewLocationForm';
+import EditLocationForm from './pages/EditLocationForm';
 
 import Context from './state/context';
 import Sidebar from './components/Sidebar'
@@ -70,7 +72,7 @@ function App() {
             exact
             path="/create-utc"
             render={props => (
-              <UTC {...props}
+              <NewUTCForm {...props}
                 onSubmit={handleUTCSubmit}
               />
             )}
@@ -79,7 +81,7 @@ function App() {
             exact
             path="/create-location"
             render={props => (
-              <Location {...props}
+              <NewLocationForm {...props}
                 onSubmit={handleLocationSubmit}
               />
             )}
@@ -88,9 +90,9 @@ function App() {
             exact
             path="/utcs/:id"
             render={props => (
-              <UTC
+              <EditUTCForm
                 {...props}
-                onEdit={handleUTCEdit}
+                onSubmit={handleUTCEdit}
               />
             )}
           />
@@ -98,9 +100,9 @@ function App() {
             exact
             path="/locations/:id"
             render={props => (
-              <Location
+              <EditLocationForm
                 {...props}
-                onEdit={handleLocationEdit}
+                onSubmit={handleLocationEdit}
               />
             )}
           />

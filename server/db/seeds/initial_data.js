@@ -3,7 +3,7 @@
 const _ = require('lodash');
 const faker = require('faker');
 
-let LOCATION_SEED_COUNT = 10;
+let LOCATION_SEED_COUNT = 30;
 let UTC_SEED_COUNT = 100;
 
 exports.seed = async function seed(knex) {

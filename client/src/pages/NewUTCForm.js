@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
       color: 'black'
     },
     content: {
+
     },
     form: {
       display: 'flex',
@@ -29,26 +30,14 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-export default function UTC({
-  onSubmit,
-  initialValues,
-}) {
+export default function NewUTCForm({ onSubmit }) {
   const formRef = useRef();
-
-  const title = initialValues
-    ? 'Edit Existing Unit Type Code'
-    : 'Create New Unit Type Code';
-
-  if (initialValues && formRef.current) {
-    formRef.current['unitTypeCode'].value = initialValues.unit_type_code;
-    formRef.current['category'].value = initialValues.category;
-    formRef.current['nomenclature'].value = initialValues.nomenclature;
-    formRef.current['description'].value = initialValues.description;
-  }
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    
     const { current } = formRef;
+    
     onSubmit({
       unit_type_code:  current["unitTypeCode"].value,
       category: current["category"].value,
@@ -61,8 +50,8 @@ export default function UTC({
   return (
     <Card className={classes.root}>
       <CardContent className={classes.content} >
-        <h1>{title}</h1>
-          <form ref={formRef} className={classes.root} noValidate autoComplete="off">
+        <h1>Create New Unit Type Code</h1>
+          <form ref={formRef} className={classes.form} noValidate autoComplete="off">
               <TextField
               id="outlined-basic"
               name="unitTypeCode"
