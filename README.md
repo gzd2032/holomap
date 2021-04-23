@@ -1,10 +1,10 @@
-
-[![Contributors][contributors-shield]][contributors-url](https://github.com/dustinws/holomap/graphs/contributors)
+<!----
+[![Contributors][contributors-shield]][contributors-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-
+----->
 
 <!-- PROJECT LOGO -->
 <br />
