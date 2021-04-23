@@ -54,7 +54,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-HOLOMAP is a application used to help Senior Decision Makers allocate forces and understand which Unit-Type-Codes are supporting certain locations
+HOLOMAP is a application used to help Senior Decision Makers allocate forces and understand which Unit-Type-Codes are supporting certain locations.  As a Major Command (MAJCOM) The military's current solution for displaying deployed assets (Unit-Type Codes / UTC) is outdated and does not easily accommodate viewing specific locations in detail to show which Combatant Commands they are supporting.
 
 
 ### Built With
