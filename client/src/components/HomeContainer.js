@@ -2,8 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
-import Typography from '@material-ui/core/Typography';
-import AllUTCsItems from './AllUTCsItems'
+import HomeContainerList from './HomeContainerList';
 
 const useStyles = makeStyles({
   root: {
@@ -13,8 +12,15 @@ const useStyles = makeStyles({
     color: 'white',
     margin: '1em',
     overFlow: 'scroll',
-    height: '60vh',
+    height: '80vh',
+    '& .MuiInputBase-root': {
+      color: 'white',
+      fontFamily: 'Orbitron',
 
+    },
+  },
+  header: {
+    fontFamily: 'inherit',
   },
   bullet: {
     display: 'inline-block',
@@ -22,25 +28,24 @@ const useStyles = makeStyles({
     transform: 'scale(0.8)',
   },
   title: {
-    fontSize: 14,
+    fontSize: 20,
   },
   pos: {
-    marginBottom: 12,
+    marginBottom: 4,
   },
 });
 
-export default function AllUTCs({utcs}) {
+export default function HomeContainer({list, title}) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} >
+    <Card className={classes.root}>
        <CardHeader
-        title={`Unit Type Code(s): ${utcs.length}`}
+        className={classes.header}
+        title={`${title}:  ${list?.length || 0}`}
       />
-      <CardContent style={{maxHeight: '60vh', overflow: 'auto'}} >
-        {utcs.map(utc => (
-            <AllUTCsItems key={utc.id} utc={utc} />
-        ))}
+      <CardContent>
+        <HomeContainerList  list={list} type={title}/>
       </CardContent>
     </Card>
   );

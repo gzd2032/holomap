@@ -1,5 +1,7 @@
 import { useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import './css/Location.css';
@@ -7,6 +9,17 @@ import './css/Location.css';
 
 const useStyles = makeStyles((theme) => ({
     root: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignContent: 'center',
+      width: '100%',
+      margin: '3em',
+      color: 'black'
+    },
+    content: {
+    },
+    form: {
       display: 'flex',
       flexDirection: 'column',
       '& > *': {
@@ -34,34 +47,37 @@ export default function Location({
     const classes = useStyles();
 
   return (
-    <div>
-      <article>
+    <Card className={classes.root}>
+      <CardContent className={classes.content} >
         <h1>{title}</h1>
-        <form ref={formRef} className={classes.root} noValidate autoComplete="off">
+        <form ref={formRef} className={classes.form} noValidate autoComplete="off">
           <TextField
-            id="outlined-basic"
+            id="name"
             name="name"
             label="Name"
             variant="outlined"
+            color="primary"
             required
           />
           <TextField
-            id="outlined-basic"
+            id="country"
             name="Country"
             label="Country"
             variant="outlined"
+            color="primary"
             required
           />
           <TextField
-            id="outlined-basic"
+            id="coordinates"
             name="Coordinates"
             label="Coordinates"
             variant="outlined"
+            color="primary"
             required
           />
           <Button variant="outlined" onClick={handleSubmit}>Submit</Button>
         </form>
-      </article>
-    </div>
+      </CardContent>
+    </Card>
   );
 }

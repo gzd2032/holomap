@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import appContext from '../state/context'
-import AllLocations from './../components/AllLocations'
-import AllUTCs from './../components/AllUTCs'
+import HomeContainer from './../components/HomeContainer'
 import {
   selectLocationsAndUTCSThatMatchSearch,
 } from '../state/selectors';
@@ -14,10 +13,11 @@ export default function Home() {
     locations,
     utcs,
   } = selectLocationsAndUTCSThatMatchSearch(state);
+
   return (
     <div id="homepage">
-      <AllLocations locations={locations} />
-      <AllUTCs utcs={utcs} />
+      <HomeContainer list={locations} title={"Locations"}/>
+      <HomeContainer list={utcs} title={"UTCs"}/>
     </div>
   );
 }

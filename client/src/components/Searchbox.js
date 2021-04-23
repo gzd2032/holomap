@@ -4,14 +4,10 @@ import { searchValueChanged } from '../state/actions'
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
-import './css/Searchbox.css';
 
 const useStyles = makeStyles((theme) => ({
     grow: {
       flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
     },
     title: {
       display: 'none',
@@ -55,18 +51,6 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
       [theme.breakpoints.up('md')]: {
         width: '20ch',
-      },
-    },
-    sectionDesktop: {
-      display: 'none',
-      [theme.breakpoints.up('md')]: {
-        display: 'flex',
-      },
-    },
-    sectionMobile: {
-      display: 'flex',
-      [theme.breakpoints.up('md')]: {
-        display: 'none',
       },
     },
   }));
