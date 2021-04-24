@@ -51,7 +51,7 @@ export default function NewUTCForm({ onSubmit }) {
     <Card className={classes.root}>
       <CardContent className={classes.content} >
         <h1>Create New Unit Type Code</h1>
-          <form ref={formRef} className={classes.form} noValidate autoComplete="off">
+          <form ref={formRef} className={classes.form} onSubmit={handleSubmit} autoComplete="off">
               <TextField
               id="outlined-basic"
               name="unitTypeCode"
@@ -80,7 +80,7 @@ export default function NewUTCForm({ onSubmit }) {
               variant="outlined"
               required
               />
-              <Button variant="outlined" onClick={handleSubmit}>Submit</Button>
+              <Button variant="outlined" type="submit">Submit</Button>
               </form>
       </CardContent>
     </Card>

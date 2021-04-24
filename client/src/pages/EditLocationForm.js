@@ -71,7 +71,7 @@ export default function EditLocationForm({ onSubmit }) {
     <Card className={classes.root}>
       <CardContent className={classes.content} >
         <h1>Edit Existing Location</h1>
-        <form className={classes.root} noValidate autoComplete="off">
+        <form className={classes.form} onSubmit={handleSubmit} autoComplete="off">
           <TextField
             required
             id="outlined-basic"
@@ -99,7 +99,7 @@ export default function EditLocationForm({ onSubmit }) {
             value={location.coordinates}
             onChange={handleChange}
           />
-          <Button variant="outlined" onClick={handleSubmit}>Submit</Button>
+          <Button variant="outlined" >Submit</Button>
         </form>
       </CardContent>
     </Card>

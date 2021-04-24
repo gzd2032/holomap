@@ -49,7 +49,7 @@ export default function NewLocationForm({ onSubmit }) {
     <Card className={classes.root}>
       <CardContent className={classes.content} >
         <h1>Create New Location</h1>
-        <form ref={formRef} className={classes.form} noValidate autoComplete="off">
+        <form ref={formRef} className={classes.form} onSubmit={handleSubmit} autoComplete="off">
           <TextField
             id="name"
             name="name"
@@ -74,7 +74,7 @@ export default function NewLocationForm({ onSubmit }) {
             color="primary"
             required
           />
-          <Button variant="outlined" onClick={handleSubmit}>Submit</Button>
+          <Button variant="outlined" type="submit">Submit</Button>
         </form>
       </CardContent>
     </Card>

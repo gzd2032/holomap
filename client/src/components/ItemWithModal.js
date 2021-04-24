@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#3c52b2',
     color: '#fff',
     '&:hover': {
-      backgroundColor: '#cccccc',
-      color: 'orange',
+      backgroundColor: '#4e4e4e',
+      color: '#ff8c01',
     },
   },
   buttons: {
@@ -150,7 +150,7 @@ export default function ItemWithModal({ item, type }) {
         >
           <Button
             variant="contained" 
-            color="alternate" 
+            color="primary" 
           >Edit</Button>
         </Link>
         <Button

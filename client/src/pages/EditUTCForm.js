@@ -41,7 +41,7 @@ export default function EditUTCForm({ onSubmit, utcs }) {
     evt.preventDefault();
         
     onSubmit(utc.id, {
-      unit_type_code: utc.unitTypeCode,
+      unit_type_code: utc.unit_type_code,
       category: utc.category,
       nomenclature: utc.nomenclature,
       description: utc.description,
@@ -65,7 +65,7 @@ export default function EditUTCForm({ onSubmit, utcs }) {
     <Card className={classes.root}>
       <CardContent className={classes.content} >
         <h1>Edit Existing Unit Type Code</h1>
-        <form className={classes.root} noValidate autoComplete="off">
+        <form className={classes.form} onSubmit={handleSubmit} autoComplete="off">
           <TextField
             required
             id="outlined-basic"
@@ -102,7 +102,7 @@ export default function EditUTCForm({ onSubmit, utcs }) {
             value={utc.description}
             onChange={handleChange}
           />
-          <Button variant="outlined" onClick={handleSubmit}>Submit</Button>
+          <Button variant="outlined" type="submit">Submit</Button>
         </form>
       </CardContent>
     </Card>
