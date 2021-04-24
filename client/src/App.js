@@ -1,4 +1,5 @@
 import { Route, Switch, useHistory } from 'react-router-dom';
+import { makeStyles, CssBaseline } from '@material-ui/core'
 import { useReducer, useMemo, useEffect } from 'react';
 import { reducer, initialState } from './state/reducer';
 import * as actions from './state/actions';
@@ -17,9 +18,22 @@ import './App.css';
 
 import NavBar from './components/NavBar'
 
+const useStyles = makeStyles( (theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
+  },
+  main: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+}))
+
 function App() {
   const history = useHistory();
   const [state, dispatch] = useReducer(reducer, initialState);
+  const classes = useStyles();
 
   const setupContextValue = useMemo(() => ({
     state,
@@ -59,56 +73,59 @@ function App() {
 
   return (
     <Context.Provider value={setupContextValue}>
-      <NavBar />
-      <main>
-        <Sidebar />
-        <Switch>
-          <Route
-            exact
-            path="/"
-            component={Home}
-          />
-          <Route
-            exact
-            path="/create-utc"
-            render={props => (
-              <NewUTCForm {...props}
-                onSubmit={handleUTCSubmit}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/create-location"
-            render={props => (
-              <NewLocationForm {...props}
-                onSubmit={handleLocationSubmit}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/utcs/:id"
-            render={props => (
-              <EditUTCForm
-                {...props}
-                onSubmit={handleUTCEdit}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/locations/:id"
-            render={props => (
-              <EditLocationForm
-                {...props}
-                onSubmit={handleLocationEdit}
-              />
-            )}
-          />
-        </Switch>
-      </main>
-      <Footer />
+      <div className={classes.root}>
+        <CssBaseline />
+        <NavBar />
+        <main className={classes.main}>
+          <Sidebar />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              component={Home}
+            />
+            <Route
+              exact
+              path="/create-utc"
+              render={props => (
+                <NewUTCForm {...props}
+                  onSubmit={handleUTCSubmit}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/create-location"
+              render={props => (
+                <NewLocationForm {...props}
+                  onSubmit={handleLocationSubmit}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/utcs/:id"
+              render={props => (
+                <EditUTCForm
+                  {...props}
+                  onSubmit={handleUTCEdit}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/locations/:id"
+              render={props => (
+                <EditLocationForm
+                  {...props}
+                  onSubmit={handleLocationEdit}
+                />
+              )}
+            />
+          </Switch>
+        </main>
+        <Footer />
+      </div>
     </Context.Provider>
   );
 }

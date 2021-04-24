@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { Container, Grid } from '@material-ui/core'
 import appContext from '../state/context'
 import HomeContainer from './../components/HomeContainer'
 import {
@@ -15,9 +16,15 @@ export default function Home() {
   } = selectLocationsAndUTCSThatMatchSearch(state);
 
   return (
-    <div id="homepage">
-      <HomeContainer list={locations} title={"Locations"}/>
-      <HomeContainer list={utcs} title={"UTCs"}/>
-    </div>
+    <Container maxWidth='lg'>
+      <Grid container spacing={2} align='center' gutterBottom>
+        <Grid item>
+          <HomeContainer list={locations} title={"Locations"}/>
+        </Grid>
+        <Grid item>
+          <HomeContainer list={utcs} title={"UTCs"}/>
+        </Grid>
+      </Grid>
+    </Container>
   );
 }

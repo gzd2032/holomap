@@ -6,18 +6,7 @@ import HomeContainerList from './HomeContainerList';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 150,
-    flexBasis: '40%',
     backgroundColor: 'rgb(51,51,51)',
-    color: 'white',
-    margin: '1em',
-    overFlow: 'scroll',
-    height: '80vh',
-    '& .MuiInputBase-root': {
-      color: 'white',
-      fontFamily: 'Orbitron',
-
-    },
   },
   header: {
     fontFamily: 'inherit',

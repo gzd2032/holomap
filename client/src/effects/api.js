@@ -35,8 +35,8 @@ export function createLocation(newLocation) {
   
   //  updateLocationbyID fetch
 export function updateLocationById(id, updatedLocation) {
-  console.log('UPDATED', updatedLocation)
   const [lat, long] = updatedLocation.coordinates.split(',');
+  
   return fetch(`http://localhost:8080/locations/${id}`, {
     method: 'PATCH',
     body: JSON.stringify({
